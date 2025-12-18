@@ -62,11 +62,12 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 - `/` - Home page with hero and features
 - `/reels` - **WISAL Reels** shoppable video feed (main feature)
 
-## 🎨 Branding
+## 🎨 Official WISAL Branding
 
-- **Primary Color**: #1F3B66 (Deep Indigo)
-- **Accent Color**: #FFC300 (Gold/Saffron)
+- **Primary Green**: #2D7A3E (from official logo)
+- **Accent Red**: #C73E3A (from official logo)
 - **Default Language**: Arabic (RTL)
+- **Brand Guide**: See `WISAL_BRANDING.md`
 
 ## 🔧 Configuration
 

@@ -131,14 +131,14 @@ export default function CheckoutPage() {
               { num: 3, label: locale === 'ar' ? 'المراجعة' : 'Review', icon: CheckCircle },
             ].map((s, i) => (
               <div key={s.num} className="flex items-center">
-                <div className={`flex flex-col items-center ${step >= s.num ? 'text-[#1F3B66]' : 'text-gray-400'}`}>
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${step >= s.num ? 'bg-[#FFC300]' : 'bg-gray-200'}`}>
-                    <s.icon size={24} className={step >= s.num ? 'text-[#1F3B66]' : 'text-gray-400'} />
+                <div className={`flex flex-col items-center ${step >= s.num ? 'text-[#2D7A3E]' : 'text-gray-400'}`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${step >= s.num ? 'bg-[#C73E3A]' : 'bg-gray-200'}`}>
+                    <s.icon size={24} className={step >= s.num ? 'text-[#2D7A3E]' : 'text-gray-400'} />
                   </div>
                   <span className="text-sm font-bold mt-2">{s.label}</span>
                 </div>
                 {i < 2 && (
-                  <div className={`w-20 h-1 mx-4 ${step > s.num ? 'bg-[#FFC300]' : 'bg-gray-200'}`} />
+                  <div className={`w-20 h-1 mx-4 ${step > s.num ? 'bg-[#C73E3A]' : 'bg-gray-200'}`} />
                 )}
               </div>
             ))}
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
                       type="text"
                       value={address.fullName}
                       onChange={(e) => setAddress({ ...address, fullName: e.target.value })}
-                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#FFC300] focus:border-transparent"
+                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#C73E3A] focus:border-transparent"
                       required
                     />
                   </div>
@@ -175,7 +175,7 @@ export default function CheckoutPage() {
                       type="tel"
                       value={address.phone}
                       onChange={(e) => setAddress({ ...address, phone: e.target.value })}
-                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#FFC300] focus:border-transparent"
+                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#C73E3A] focus:border-transparent"
                       dir="ltr"
                       required
                     />
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
                       type="text"
                       value={address.street}
                       onChange={(e) => setAddress({ ...address, street: e.target.value })}
-                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#FFC300] focus:border-transparent"
+                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#C73E3A] focus:border-transparent"
                       required
                     />
                   </div>
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
                         type="text"
                         value={address.city}
                         onChange={(e) => setAddress({ ...address, city: e.target.value })}
-                        className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#FFC300] focus:border-transparent"
+                        className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#C73E3A] focus:border-transparent"
                         required
                       />
                     </div>
@@ -213,7 +213,7 @@ export default function CheckoutPage() {
                         type="text"
                         value={address.district}
                         onChange={(e) => setAddress({ ...address, district: e.target.value })}
-                        className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#FFC300] focus:border-transparent"
+                        className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#C73E3A] focus:border-transparent"
                         required
                       />
                     </div>
@@ -226,14 +226,14 @@ export default function CheckoutPage() {
                       type="text"
                       value={address.postalCode}
                       onChange={(e) => setAddress({ ...address, postalCode: e.target.value })}
-                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#FFC300] focus:border-transparent"
+                      className="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#C73E3A] focus:border-transparent"
                       dir="ltr"
                     />
                   </div>
                   <button
                     onClick={() => setStep(2)}
                     disabled={!address.fullName || !address.phone || !address.street || !address.city}
-                    className="w-full bg-[#FFC300] text-[#1F3B66] font-bold py-4 rounded-lg hover:bg-[#FFD700] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-[#C73E3A] text-[#2D7A3E] font-bold py-4 rounded-lg hover:bg-[#A52A26] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {locale === 'ar' ? 'التالي' : 'Next'}
                   </button>
@@ -257,7 +257,7 @@ export default function CheckoutPage() {
                     <label
                       key={method.id}
                       className={`flex items-center gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                        paymentMethod === method.id ? 'border-[#FFC300] bg-[#FFC300]/10' : 'border-gray-200 hover:border-gray-300'
+                        paymentMethod === method.id ? 'border-[#C73E3A] bg-[#C73E3A]/10' : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
                       <input
@@ -282,7 +282,7 @@ export default function CheckoutPage() {
                   </button>
                   <button
                     onClick={() => setStep(3)}
-                    className="flex-1 bg-[#FFC300] text-[#1F3B66] font-bold py-4 rounded-lg hover:bg-[#FFD700] transition-colors"
+                    className="flex-1 bg-[#C73E3A] text-[#2D7A3E] font-bold py-4 rounded-lg hover:bg-[#A52A26] transition-colors"
                   >
                     {locale === 'ar' ? 'التالي' : 'Next'}
                   </button>
@@ -329,7 +329,7 @@ export default function CheckoutPage() {
                   <button
                     onClick={handlePlaceOrder}
                     disabled={placing}
-                    className="flex-1 bg-[#FFC300] text-[#1F3B66] font-bold py-4 rounded-lg hover:bg-[#FFD700] transition-colors disabled:opacity-50"
+                    className="flex-1 bg-[#C73E3A] text-[#2D7A3E] font-bold py-4 rounded-lg hover:bg-[#A52A26] transition-colors disabled:opacity-50"
                   >
                     {placing ? (locale === 'ar' ? 'جاري إتمام الطلب...' : 'Placing Order...') : (locale === 'ar' ? 'تأكيد الطلب' : 'Confirm Order')}
                   </button>
@@ -375,7 +375,7 @@ export default function CheckoutPage() {
 
               <div className="flex justify-between text-lg font-bold border-t pt-4">
                 <span className="text-gray-900">{locale === 'ar' ? 'الإجمالي' : 'Total'}</span>
-                <span className="text-[#FFC300]">{formatPrice(grandTotal, locale)}</span>
+                <span className="text-[#C73E3A]">{formatPrice(grandTotal, locale)}</span>
               </div>
 
               {total < 200 && (
@@ -393,3 +393,4 @@ export default function CheckoutPage() {
     </div>
   );
 }
+

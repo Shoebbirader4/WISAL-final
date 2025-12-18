@@ -111,7 +111,7 @@ export default function CartPage() {
             <p className="text-xl text-gray-600 mb-4">سلة التسوق فارغة</p>
             <Link
               href="/products"
-              className="inline-block bg-[#FFC300] text-[#1F3B66] font-bold px-8 py-3 rounded-lg hover:bg-[#FFD700] transition-colors"
+              className="inline-block bg-[#C73E3A] text-[#2D7A3E] font-bold px-8 py-3 rounded-lg hover:bg-[#A52A26] transition-colors"
             >
               تصفح المنتجات
             </Link>
@@ -124,7 +124,7 @@ export default function CartPage() {
                   <div className="flex-1">
                     <h3 className="text-xl font-bold mb-2">{item.product.nameAr}</h3>
                     <p className="text-gray-600 mb-2">{item.product.sellerName}</p>
-                    <p className="text-2xl font-bold text-[#FFC300]">
+                    <p className="text-2xl font-bold text-[#C73E3A]">
                       {formatPrice(item.product.price, 'ar')}
                     </p>
                   </div>
@@ -166,14 +166,14 @@ export default function CartPage() {
             <div className="bg-white rounded-lg shadow p-6">
               <div className="flex justify-between items-center mb-6">
                 <span className="text-2xl font-bold">المجموع:</span>
-                <span className="text-3xl font-bold text-[#FFC300]">
+                <span className="text-3xl font-bold text-[#C73E3A]">
                   {formatPrice(total, 'ar')}
                 </span>
               </div>
 
               <Link
                 href="/checkout"
-                className="w-full bg-[#FFC300] text-[#1F3B66] font-bold py-4 px-6 rounded-lg hover:bg-[#FFD700] transition-colors block text-center"
+                className="w-full bg-[#C73E3A] text-[#2D7A3E] font-bold py-4 px-6 rounded-lg hover:bg-[#A52A26] transition-colors block text-center"
               >
                 إتمام الطلب
               </Link>
@@ -184,3 +184,4 @@ export default function CartPage() {
     </div>
   );
 }
+

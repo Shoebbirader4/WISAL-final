@@ -3,7 +3,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Header from '@/components/Header';
+import ProductReviews from '@/components/ProductReviews';
+import RelatedProducts from '@/components/RelatedProducts';
 import { formatPrice } from '@/lib/utils';
+import { addToRecentlyViewed } from '@/lib/recentlyViewed';
 import { ShoppingCart, Heart, Share2, Star, Truck, Shield, RotateCcw } from 'lucide-react';
 import { useAuth } from '@/lib/context/AuthContext';
 import Link from 'next/link';
@@ -37,6 +40,7 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [adding, setAdding] = useState(false);
+  const [inWishlist, setInWishlist] = useState(false);
 
   useEffect(() => {
     if (params.id) {
@@ -50,6 +54,15 @@ export default function ProductDetailPage() {
       if (response.ok) {
         const data = await response.json();
         setProduct(data);
+        
+        // Track recently viewed
+        addToRecentlyViewed({
+          id: data.id,
+          name: data.name,
+          nameAr: data.nameAr,
+          price: data.price,
+          image: data.images[0] || '',
+        });
       } else {
         router.push('/products');
       }
@@ -85,6 +98,37 @@ export default function ProductDetailPage() {
       alert('❌ حدث خطأ');
     } finally {
       setAdding(false);
+    }
+  };
+
+  const toggleWishlist = async () => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
+    try {
+      if (inWishlist) {
+        const response = await fetch(`/api/wishlist?productId=${product?.id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          setInWishlist(false);
+          alert('تمت الإزالة من المفضلة');
+        }
+      } else {
+        const response = await fetch('/api/wishlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId: product?.id }),
+        });
+        if (response.ok) {
+          setInWishlist(true);
+          alert('تمت الإضافة إلى المفضلة');
+        }
+      }
+    } catch (error) {
+      console.error('Error toggling wishlist:', error);
     }
   };
 
@@ -227,11 +271,18 @@ export default function ProductDetailPage() {
                 </button>
                 
                 <div className="grid grid-cols-2 gap-3">
-                  <button className="border-2 border-gray-300 py-3 rounded-lg hover:border-[#1F3B66] transition-colors flex items-center justify-center gap-2">
-                    <Heart size={20} />
+                  <button 
+                    onClick={toggleWishlist}
+                    className={`border-2 py-3 rounded-lg transition-colors flex items-center justify-center gap-2 ${
+                      inWishlist 
+                        ? 'border-[#C73E3A] bg-[#C73E3A] text-white' 
+                        : 'border-gray-300 hover:border-[#C73E3A]'
+                    }`}
+                  >
+                    <Heart size={20} className={inWishlist ? 'fill-current' : ''} />
                     <span>المفضلة</span>
                   </button>
-                  <button className="border-2 border-gray-300 py-3 rounded-lg hover:border-[#1F3B66] transition-colors flex items-center justify-center gap-2">
+                  <button className="border-2 border-gray-300 py-3 rounded-lg hover:border-[#2D7A3E] transition-colors flex items-center justify-center gap-2">
                     <Share2 size={20} />
                     <span>مشاركة</span>
                   </button>
@@ -266,13 +317,11 @@ export default function ProductDetailPage() {
         </div>
 
         {/* Reviews */}
-        <div className="bg-white rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6">التقييمات والمراجعات</h2>
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">⭐</div>
-            <h3 className="text-xl font-bold mb-2">لا توجد تقييمات بعد</h3>
-            <p className="text-gray-600">كن أول من يقيم هذا المنتج</p>
-          </div>
+        <ProductReviews productId={product.id} />
+
+        {/* Related Products */}
+        <div className="mt-8">
+          <RelatedProducts productId={product.id} category={product.category} />
         </div>
       </div>
     </div>

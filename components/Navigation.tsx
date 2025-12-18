@@ -10,28 +10,28 @@ export default function Navigation() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 md:hidden">
       <div className="flex justify-around items-center h-16">
-        <Link href="/" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#1F3B66]">
+        <Link href="/" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#2D7A3E]">
           <Home size={24} />
           <span className="text-xs">الرئيسية</span>
         </Link>
         
-        <Link href="/reels" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#1F3B66]">
+        <Link href="/reels" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#2D7A3E]">
           <Video size={24} />
           <span className="text-xs">ريلز</span>
         </Link>
         
-        <Link href="/cart" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#1F3B66]">
+        <Link href="/cart" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#2D7A3E]">
           <ShoppingCart size={24} />
           <span className="text-xs">السلة</span>
         </Link>
         
         {user ? (
-          <Link href="/profile" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#1F3B66]">
+          <Link href="/profile" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#2D7A3E]">
             <User size={24} />
             <span className="text-xs">حسابي</span>
           </Link>
         ) : (
-          <Link href="/login" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#1F3B66]">
+          <Link href="/login" className="flex flex-col items-center gap-1 text-gray-600 hover:text-[#2D7A3E]">
             <LogIn size={24} />
             <span className="text-xs">دخول</span>
           </Link>

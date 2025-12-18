@@ -26,10 +26,12 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [priceRange, setPriceRange] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('newest');
 
   useEffect(() => {
     fetchProducts();
-  }, [category, search]);
+  }, [category, search, priceRange, sortBy]);
 
   const fetchProducts = async () => {
     try {
@@ -37,6 +39,21 @@ export default function ProductsPage() {
       const params = new URLSearchParams();
       if (category) params.append('category', category);
       if (search) params.append('search', search);
+      if (sortBy) params.append('sortBy', sortBy);
+      
+      // Price range filter
+      if (priceRange !== 'all') {
+        const ranges: Record<string, { min?: number; max?: number }> = {
+          'under-100': { max: 100 },
+          '100-500': { min: 100, max: 500 },
+          '500-1000': { min: 500, max: 1000 },
+          'over-1000': { min: 1000 },
+        };
+        const range = ranges[priceRange];
+        if (range.min) params.append('minPrice', range.min.toString());
+        if (range.max) params.append('maxPrice', range.max.toString());
+      }
+      
       if (params.toString()) url += `?${params.toString()}`;
 
       const response = await fetch(url);
@@ -70,9 +87,9 @@ export default function ProductsPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
-          <Link href="/" className="hover:text-[#1F3B66]">الرئيسية</Link>
+          <Link href="/" className="hover:text-[#2D7A3E]">الرئيسية</Link>
           <span>/</span>
-          <span className="text-[#1F3B66] font-bold">
+          <span className="text-[#2D7A3E] font-bold">
             {search ? `نتائج البحث: "${search}"` : getCategoryName(category)}
           </span>
         </div>
@@ -89,7 +106,7 @@ export default function ProductsPage() {
                 <li>
                   <Link
                     href="/products"
-                    className={`block py-2 px-3 rounded hover:bg-gray-100 ${!category ? 'bg-[#FFC300]/20 font-bold' : ''}`}
+                    className={`block py-2 px-3 rounded hover:bg-gray-100 ${!category ? 'bg-[#A8B5A0]/30 font-bold' : ''}`}
                   >
                     جميع المنتجات
                   </Link>
@@ -105,7 +122,7 @@ export default function ProductsPage() {
                   <li key={cat.key}>
                     <Link
                       href={`/products?category=${cat.key}`}
-                      className={`block py-2 px-3 rounded hover:bg-gray-100 ${category === cat.key ? 'bg-[#FFC300]/20 font-bold' : ''}`}
+                      className={`block py-2 px-3 rounded hover:bg-gray-100 ${category === cat.key ? 'bg-[#A8B5A0]/30 font-bold' : ''}`}
                     >
                       <span className="ml-2">{cat.icon}</span>
                       {cat.name}
@@ -117,20 +134,54 @@ export default function ProductsPage() {
               <div className="mt-8 pt-8 border-t">
                 <h3 className="font-bold text-lg mb-4">السعر</h3>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2">
-                    <input type="checkbox" className="rounded" />
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="priceRange"
+                      checked={priceRange === 'all'}
+                      onChange={() => setPriceRange('all')}
+                      className="rounded" 
+                    />
+                    <span className="text-sm">جميع الأسعار</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="priceRange"
+                      checked={priceRange === 'under-100'}
+                      onChange={() => setPriceRange('under-100')}
+                      className="rounded" 
+                    />
                     <span className="text-sm">أقل من 100 ر.س</span>
                   </label>
-                  <label className="flex items-center gap-2">
-                    <input type="checkbox" className="rounded" />
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="priceRange"
+                      checked={priceRange === '100-500'}
+                      onChange={() => setPriceRange('100-500')}
+                      className="rounded" 
+                    />
                     <span className="text-sm">100 - 500 ر.س</span>
                   </label>
-                  <label className="flex items-center gap-2">
-                    <input type="checkbox" className="rounded" />
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="priceRange"
+                      checked={priceRange === '500-1000'}
+                      onChange={() => setPriceRange('500-1000')}
+                      className="rounded" 
+                    />
                     <span className="text-sm">500 - 1000 ر.س</span>
                   </label>
-                  <label className="flex items-center gap-2">
-                    <input type="checkbox" className="rounded" />
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="priceRange"
+                      checked={priceRange === 'over-1000'}
+                      onChange={() => setPriceRange('over-1000')}
+                      className="rounded" 
+                    />
                     <span className="text-sm">أكثر من 1000 ر.س</span>
                   </label>
                 </div>
@@ -146,22 +197,26 @@ export default function ProductsPage() {
                 {loading ? 'جاري التحميل...' : `${products.length} منتج`}
               </div>
               <div className="flex items-center gap-4">
-                <select className="border rounded-lg px-4 py-2 text-sm">
-                  <option>الأكثر صلة</option>
-                  <option>السعر: من الأقل للأعلى</option>
-                  <option>السعر: من الأعلى للأقل</option>
-                  <option>الأحدث</option>
+                <select 
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="border rounded-lg px-4 py-2 text-sm"
+                >
+                  <option value="newest">الأحدث</option>
+                  <option value="price-asc">السعر: من الأقل للأعلى</option>
+                  <option value="price-desc">السعر: من الأعلى للأقل</option>
+                  <option value="name">الاسم</option>
                 </select>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-2 rounded ${viewMode === 'grid' ? 'bg-[#FFC300]' : 'bg-gray-100'}`}
+                    className={`p-2 rounded ${viewMode === 'grid' ? 'bg-[#C73E3A] text-white' : 'bg-gray-100'}`}
                   >
                     <Grid size={20} />
                   </button>
                   <button
                     onClick={() => setViewMode('list')}
-                    className={`p-2 rounded ${viewMode === 'list' ? 'bg-[#FFC300]' : 'bg-gray-100'}`}
+                    className={`p-2 rounded ${viewMode === 'list' ? 'bg-[#C73E3A] text-white' : 'bg-gray-100'}`}
                   >
                     <List size={20} />
                   </button>
@@ -185,7 +240,7 @@ export default function ProductsPage() {
                 <div className="text-6xl mb-4">🔍</div>
                 <h3 className="text-2xl font-bold mb-2">لا توجد منتجات</h3>
                 <p className="text-gray-600 mb-6">جرب البحث بكلمات مختلفة أو تصفح الفئات الأخرى</p>
-                <Link href="/products" className="bg-[#FFC300] text-[#1F3B66] font-bold px-6 py-3 rounded-lg inline-block hover:bg-[#FFD700]">
+                <Link href="/products" className="bg-[#C73E3A] text-white font-bold px-6 py-3 rounded-lg inline-block hover:bg-[#A52A26]">
                   عرض جميع المنتجات
                 </Link>
               </div>
@@ -201,12 +256,12 @@ export default function ProductsPage() {
                       📦
                     </div>
                     <div className="p-4 flex-1">
-                      <h3 className="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#1F3B66]">
+                      <h3 className="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#2D7A3E]">
                         {product.nameAr}
                       </h3>
                       <p className="text-sm text-gray-500 mb-2">{product.sellerName}</p>
                       <div className="flex items-center justify-between">
-                        <p className="text-xl font-bold text-[#FFC300]">
+                        <p className="text-xl font-bold text-[#C73E3A]">
                           {formatPrice(product.price, 'ar')}
                         </p>
                         {product.stock < 10 && product.stock > 0 && (
@@ -214,7 +269,7 @@ export default function ProductsPage() {
                         )}
                       </div>
                       {viewMode === 'list' && (
-                        <button className="mt-4 w-full bg-[#FFC300] text-[#1F3B66] font-bold py-2 rounded-lg hover:bg-[#FFD700]">
+                        <button className="mt-4 w-full bg-[#C73E3A] text-white font-bold py-2 rounded-lg hover:bg-[#A52A26]">
                           أضف إلى السلة
                         </button>
                       )}

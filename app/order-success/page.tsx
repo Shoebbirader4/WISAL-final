@@ -104,14 +104,14 @@ export default function OrderSuccessPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <Link
               href="/profile?tab=orders"
-              className="bg-[#1F3B66] text-white font-bold py-4 px-6 rounded-lg hover:bg-[#2a4d7a] transition-colors text-center flex items-center justify-center gap-2"
+              className="bg-[#2D7A3E] text-white font-bold py-4 px-6 rounded-lg hover:bg-[#1F5A2E] transition-colors text-center flex items-center justify-center gap-2"
             >
               <Package size={20} />
               <span>{locale === 'ar' ? 'عرض طلباتي' : 'View My Orders'}</span>
             </Link>
             <Link
               href="/"
-              className="bg-[#FFC300] text-[#1F3B66] font-bold py-4 px-6 rounded-lg hover:bg-[#FFD700] transition-colors text-center flex items-center justify-center gap-2"
+              className="bg-[#C73E3A] text-[#2D7A3E] font-bold py-4 px-6 rounded-lg hover:bg-[#A52A26] transition-colors text-center flex items-center justify-center gap-2"
             >
               <Home size={20} />
               <span>{locale === 'ar' ? 'العودة للرئيسية' : 'Back to Home'}</span>
@@ -125,7 +125,7 @@ export default function OrderSuccessPage() {
             </p>
             <Link
               href="/products"
-              className="text-[#1F3B66] hover:text-[#FFC300] font-bold transition-colors"
+              className="text-[#2D7A3E] hover:text-[#C73E3A] font-bold transition-colors"
             >
               {locale === 'ar' ? 'تصفح المنتجات ←' : 'Browse Products →'}
             </Link>
@@ -135,3 +135,4 @@ export default function OrderSuccessPage() {
     </div>
   );
 }
+

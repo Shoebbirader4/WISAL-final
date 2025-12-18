@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import RecentlyViewed from '@/components/RecentlyViewed';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { formatPrice } from '@/lib/utils';
 import { ChevronLeft } from 'lucide-react';
@@ -70,7 +71,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Banner */}
-      <section className="bg-gradient-to-r from-[#1F3B66] to-[#2a4d7a] text-white">
+      <section className="bg-gradient-to-r from-[#2D7A3E] to-[#1F5A2E] text-white">
         <div className="container mx-auto px-4 py-16">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -83,7 +84,7 @@ export default function Home() {
               <div className="flex gap-4">
                 <Link
                   href="/reels"
-                  className="bg-[#FFC300] text-[#1F3B66] font-bold px-8 py-4 rounded-lg hover:bg-[#FFD700] transition-colors inline-flex items-center gap-2"
+                  className="bg-[#C73E3A] text-white font-bold px-8 py-4 rounded-lg hover:bg-[#A52A26] transition-colors inline-flex items-center gap-2"
                 >
                   🎥 {t('watch_reels')}
                 </Link>
@@ -126,7 +127,7 @@ export default function Home() {
               <Link
                 key={cat.category}
                 href={`/products?category=${cat.category}`}
-                className="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg hover:bg-[#FFC300]/10 transition-all group border border-gray-100"
+                className="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg hover:bg-[#A8B5A0]/20 transition-all group border border-gray-100"
               >
                 <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">{cat.icon}</div>
                 <h3 className="font-bold text-gray-900">{t(cat.key)}</h3>
@@ -148,7 +149,7 @@ export default function Home() {
                 {locale === 'ar' ? 'شاهد وتسوق من الفيديوهات القصيرة' : 'Watch and shop from short videos'}
               </p>
             </div>
-            <Link href="/reels" className="text-[#1F3B66] hover:text-[#FFC300] font-bold flex items-center gap-2 transition-colors">
+            <Link href="/reels" className="text-[#2D7A3E] hover:text-[#C73E3A] font-bold flex items-center gap-2 transition-colors">
               {t('view_all')}
               <ChevronLeft size={20} />
             </Link>
@@ -179,7 +180,7 @@ export default function Home() {
                     <p className="font-bold text-sm mb-1 line-clamp-2">
                       {locale === 'ar' ? reel.product.nameAr : reel.product.name}
                     </p>
-                    <p className="text-[#FFC300] font-bold text-lg">
+                    <p className="text-[#C73E3A] font-bold text-lg">
                       {formatPrice(reel.product.price, locale)}
                     </p>
                     <p className="text-xs text-white/80 mt-1">
@@ -193,17 +194,17 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className="bg-gradient-to-r from-[#FFC300] to-[#FFD700] rounded-xl p-8 text-center">
+            <div className="bg-gradient-to-r from-[#C73E3A] to-[#E57373] rounded-xl p-8 text-center">
               <div className="text-6xl mb-4">🎬</div>
-              <h3 className="text-2xl font-bold text-[#1F3B66] mb-2">
+              <h3 className="text-2xl font-bold text-[#2D7A3E] mb-2">
                 {locale === 'ar' ? 'فيديوهات تسوق تفاعلية!' : 'Interactive Shopping Videos!'}
               </h3>
-              <p className="text-[#1F3B66]/80 mb-6">
+              <p className="text-[#2D7A3E]/80 mb-6">
                 {locale === 'ar' ? 'شاهد منتجاتك المفضلة في فيديوهات قصيرة وتسوق مباشرة' : 'Watch your favorite products in short videos and shop directly'}
               </p>
               <Link
                 href="/reels"
-                className="bg-[#1F3B66] text-white font-bold px-8 py-4 rounded-lg hover:bg-[#2a4d7a] transition-colors inline-block"
+                className="bg-[#2D7A3E] text-white font-bold px-8 py-4 rounded-lg hover:bg-[#1F5A2E] transition-colors inline-block"
               >
                 {locale === 'ar' ? 'ابدأ المشاهدة الآن ←' : 'Start Watching Now →'}
               </Link>
@@ -217,7 +218,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">{t('featured_products')}</h2>
-            <Link href="/products" className="text-[#1F3B66] hover:text-[#FFC300] font-bold flex items-center gap-2 transition-colors">
+            <Link href="/products" className="text-[#2D7A3E] hover:text-[#C73E3A] font-bold flex items-center gap-2 transition-colors">
               {t('view_all')}
               <ChevronLeft size={20} />
             </Link>
@@ -245,11 +246,11 @@ export default function Home() {
                     📦
                   </div>
                   <div className="p-4">
-                    <h3 className="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#1F3B66]">
+                    <h3 className="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#2D7A3E]">
                       {locale === 'ar' ? product.nameAr : product.name || product.nameAr}
                     </h3>
                     <p className="text-sm text-gray-500 mb-2">{product.sellerName}</p>
-                    <p className="text-xl font-bold text-[#FFC300]">
+                    <p className="text-xl font-bold text-[#C73E3A]">
                       {formatPrice(product.price, locale)}
                     </p>
                   </div>
@@ -259,6 +260,9 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* Recently Viewed */}
+      <RecentlyViewed />
 
       {/* Features */}
       <section className="py-12 bg-white">
@@ -289,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1F3B66] text-white py-12">
+      <footer className="bg-[#2D7A3E] text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -303,9 +307,9 @@ export default function Home() {
                 {locale === 'ar' ? 'روابط سريعة' : 'Quick Links'}
               </h4>
               <ul className="space-y-2 text-white/70">
-                <li><Link href="/about" className="hover:text-[#FFC300] transition-colors">{locale === 'ar' ? 'من نحن' : 'About Us'}</Link></li>
-                <li><Link href="/contact" className="hover:text-[#FFC300] transition-colors">{locale === 'ar' ? 'اتصل بنا' : 'Contact Us'}</Link></li>
-                <li><Link href="/careers" className="hover:text-[#FFC300] transition-colors">{locale === 'ar' ? 'الوظائف' : 'Careers'}</Link></li>
+                <li><Link href="/about" className="hover:text-[#C73E3A] transition-colors">{locale === 'ar' ? 'من نحن' : 'About Us'}</Link></li>
+                <li><Link href="/contact" className="hover:text-[#C73E3A] transition-colors">{locale === 'ar' ? 'اتصل بنا' : 'Contact Us'}</Link></li>
+                <li><Link href="/careers" className="hover:text-[#C73E3A] transition-colors">{locale === 'ar' ? 'الوظائف' : 'Careers'}</Link></li>
               </ul>
             </div>
             <div>
@@ -313,9 +317,9 @@ export default function Home() {
                 {locale === 'ar' ? 'خدمة العملاء' : 'Customer Service'}
               </h4>
               <ul className="space-y-2 text-white/70">
-                <li><Link href="/help" className="hover:text-[#FFC300] transition-colors">{locale === 'ar' ? 'المساعدة' : 'Help'}</Link></li>
-                <li><Link href="/returns" className="hover:text-[#FFC300] transition-colors">{locale === 'ar' ? 'الإرجاع والاستبدال' : 'Returns & Exchange'}</Link></li>
-                <li><Link href="/shipping" className="hover:text-[#FFC300] transition-colors">{locale === 'ar' ? 'الشحن والتوصيل' : 'Shipping & Delivery'}</Link></li>
+                <li><Link href="/help" className="hover:text-[#C73E3A] transition-colors">{locale === 'ar' ? 'المساعدة' : 'Help'}</Link></li>
+                <li><Link href="/returns" className="hover:text-[#C73E3A] transition-colors">{locale === 'ar' ? 'الإرجاع والاستبدال' : 'Returns & Exchange'}</Link></li>
+                <li><Link href="/shipping" className="hover:text-[#C73E3A] transition-colors">{locale === 'ar' ? 'الشحن والتوصيل' : 'Shipping & Delivery'}</Link></li>
               </ul>
             </div>
             <div>
@@ -323,9 +327,9 @@ export default function Home() {
                 {locale === 'ar' ? 'تابعنا' : 'Follow Us'}
               </h4>
               <div className="flex gap-4 text-2xl">
-                <a href="#" className="hover:text-[#FFC300] transition-colors">📱</a>
-                <a href="#" className="hover:text-[#FFC300] transition-colors">🐦</a>
-                <a href="#" className="hover:text-[#FFC300] transition-colors">📷</a>
+                <a href="#" className="hover:text-[#C73E3A] transition-colors">📱</a>
+                <a href="#" className="hover:text-[#C73E3A] transition-colors">🐦</a>
+                <a href="#" className="hover:text-[#C73E3A] transition-colors">📷</a>
               </div>
             </div>
           </div>

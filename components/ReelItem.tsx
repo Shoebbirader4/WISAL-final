@@ -77,7 +77,7 @@ export default function ReelItem({ reel, isActive }: ReelItemProps) {
         <div className="mb-4">
           <h3 className="text-xl font-bold mb-2">{reel.product.nameAr}</h3>
           <p className="text-sm text-gray-300 mb-1">{reel.product.sellerName}</p>
-          <p className="text-2xl font-bold text-[#FFC300]">
+          <p className="text-2xl font-bold text-[#C73E3A]">
             {formatPrice(reel.product.price, 'ar')}
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function ReelItem({ reel, isActive }: ReelItemProps) {
         {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          className="w-full bg-[#FFC300] text-[#1F3B66] font-bold py-4 px-6 rounded-lg flex items-center justify-center gap-2 hover:bg-[#FFD700] transition-colors"
+          className="w-full bg-[#C73E3A] text-white font-bold py-4 px-6 rounded-lg flex items-center justify-center gap-2 hover:bg-[#A52A26] transition-colors"
         >
           <ShoppingCart size={24} />
           <span>أضف إلى السلة</span>

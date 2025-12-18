@@ -25,6 +25,8 @@ model User {
   videoReels    VideoReel[]
   likes         ReelLike[]
   comments      ReelComment[]
+  reviews       Review[]
+  wishlistItems WishlistItem[]
 }
 
 
@@ -49,6 +51,8 @@ model Product {
   videoReels    VideoReel[]
   orderItems    OrderItem[]
   cartItems     CartItem[]
+  reviews       Review[]
+  wishlistItems WishlistItem[]
 }
 
 model VideoReel {
@@ -134,4 +138,29 @@ model OrderItem {
   price         Float     // Price at time of order
   sellerId      String    // For commission tracking
   createdAt     DateTime  @default(now())
+}
+
+model Review {
+  id            String    @id @default(cuid())
+  rating        Int       // 1-5 stars
+  comment       String?
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  productId     String
+  product       Product   @relation(fields: [productId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@unique([userId, productId])
+}
+
+model WishlistItem {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  productId     String
+  product       Product   @relation(fields: [productId], references: [id])
+  createdAt     DateTime  @default(now())
+  
+  @@unique([userId, productId])
 }

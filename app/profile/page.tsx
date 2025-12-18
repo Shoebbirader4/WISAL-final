@@ -42,7 +42,7 @@ export default function ProfilePage() {
             <div className="bg-white rounded-lg p-6 sticky top-24">
               {/* User Info */}
               <div className="text-center mb-6 pb-6 border-b">
-                <div className="w-20 h-20 bg-[#FFC300] rounded-full flex items-center justify-center text-3xl mx-auto mb-3">
+                <div className="w-20 h-20 bg-[#C73E3A] rounded-full flex items-center justify-center text-3xl mx-auto mb-3">
                   {user.nameAr?.[0] || user.name?.[0] || '👤'}
                 </div>
                 <h3 className="font-bold text-lg">{user.nameAr || user.name}</h3>
@@ -57,7 +57,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('overview')}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === 'overview' ? 'bg-[#FFC300] text-[#1F3B66] font-bold' : 'hover:bg-gray-100'
+                    activeTab === 'overview' ? 'bg-[#C73E3A] text-white font-bold' : 'hover:bg-gray-100'
                   }`}
                 >
                   <User size={20} />
@@ -67,7 +67,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('orders')}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === 'orders' ? 'bg-[#FFC300] text-[#1F3B66] font-bold' : 'hover:bg-gray-100'
+                    activeTab === 'orders' ? 'bg-[#C73E3A] text-white font-bold' : 'hover:bg-gray-100'
                   }`}
                 >
                   <Package size={20} />
@@ -77,7 +77,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('wishlist')}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === 'wishlist' ? 'bg-[#FFC300] text-[#1F3B66] font-bold' : 'hover:bg-gray-100'
+                    activeTab === 'wishlist' ? 'bg-[#C73E3A] text-white font-bold' : 'hover:bg-gray-100'
                   }`}
                 >
                   <Heart size={20} />
@@ -87,7 +87,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('addresses')}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === 'addresses' ? 'bg-[#FFC300] text-[#1F3B66] font-bold' : 'hover:bg-gray-100'
+                    activeTab === 'addresses' ? 'bg-[#C73E3A] text-white font-bold' : 'hover:bg-gray-100'
                   }`}
                 >
                   <MapPin size={20} />
@@ -97,7 +97,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('payment')}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === 'payment' ? 'bg-[#FFC300] text-[#1F3B66] font-bold' : 'hover:bg-gray-100'
+                    activeTab === 'payment' ? 'bg-[#C73E3A] text-white font-bold' : 'hover:bg-gray-100'
                   }`}
                 >
                   <CreditCard size={20} />
@@ -107,7 +107,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setActiveTab('settings')}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    activeTab === 'settings' ? 'bg-[#FFC300] text-[#1F3B66] font-bold' : 'hover:bg-gray-100'
+                    activeTab === 'settings' ? 'bg-[#C73E3A] text-white font-bold' : 'hover:bg-gray-100'
                   }`}
                 >
                   <Settings size={20} />
@@ -176,10 +176,10 @@ export default function ProfilePage() {
                 </div>
 
                 {user.role === 'SELLER' && (
-                  <div className="bg-gradient-to-r from-[#1F3B66] to-[#2a4d7a] text-white rounded-lg p-6">
+                  <div className="bg-gradient-to-r from-[#2D7A3E] to-[#1F5A2E] text-white rounded-lg p-6">
                     <h3 className="text-xl font-bold mb-4">لوحة البائع</h3>
                     <p className="mb-4">قم بإدارة منتجاتك وطلباتك من لوحة التحكم</p>
-                    <button className="bg-[#FFC300] text-[#1F3B66] font-bold px-6 py-3 rounded-lg hover:bg-[#FFD700]">
+                    <button className="bg-[#C73E3A] text-white font-bold px-6 py-3 rounded-lg hover:bg-[#A52A26]">
                       الذهاب إلى لوحة البائع
                     </button>
                   </div>
@@ -196,7 +196,7 @@ export default function ProfilePage() {
                   <div className="text-6xl mb-4">❤️</div>
                   <h3 className="text-xl font-bold mb-2">لا توجد منتجات مفضلة</h3>
                   <p className="text-gray-600 mb-6">أضف منتجاتك المفضلة لتجدها بسهولة لاحقاً</p>
-                  <a href="/products" className="bg-[#FFC300] text-[#1F3B66] font-bold px-6 py-3 rounded-lg inline-block hover:bg-[#FFD700]">
+                  <a href="/products" className="bg-[#C73E3A] text-white font-bold px-6 py-3 rounded-lg inline-block hover:bg-[#A52A26]">
                     تصفح المنتجات
                   </a>
                 </div>
@@ -207,7 +207,7 @@ export default function ProfilePage() {
               <div className="bg-white rounded-lg p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold">عناويني</h2>
-                  <button className="bg-[#FFC300] text-[#1F3B66] font-bold px-4 py-2 rounded-lg hover:bg-[#FFD700]">
+                  <button className="bg-[#C73E3A] text-white font-bold px-4 py-2 rounded-lg hover:bg-[#A52A26]">
                     + إضافة عنوان جديد
                   </button>
                 </div>
@@ -223,7 +223,7 @@ export default function ProfilePage() {
               <div className="bg-white rounded-lg p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold">طرق الدفع</h2>
-                  <button className="bg-[#FFC300] text-[#1F3B66] font-bold px-4 py-2 rounded-lg hover:bg-[#FFD700]">
+                  <button className="bg-[#C73E3A] text-white font-bold px-4 py-2 rounded-lg hover:bg-[#A52A26]">
                     + إضافة بطاقة
                   </button>
                 </div>
@@ -278,7 +278,7 @@ export default function ProfilePage() {
                           dir="ltr"
                         />
                       </div>
-                      <button className="bg-[#FFC300] text-[#1F3B66] font-bold px-6 py-2 rounded-lg hover:bg-[#FFD700]">
+                      <button className="bg-[#C73E3A] text-white font-bold px-6 py-2 rounded-lg hover:bg-[#A52A26]">
                         حفظ التغييرات
                       </button>
                     </div>
@@ -308,7 +308,7 @@ export default function ProfilePage() {
                           className="w-full border rounded-lg px-4 py-2"
                         />
                       </div>
-                      <button className="bg-[#FFC300] text-[#1F3B66] font-bold px-6 py-2 rounded-lg hover:bg-[#FFD700]">
+                      <button className="bg-[#C73E3A] text-white font-bold px-6 py-2 rounded-lg hover:bg-[#A52A26]">
                         تغيير كلمة المرور
                       </button>
                     </div>
@@ -388,7 +388,7 @@ function OrdersTab() {
           <div className="text-6xl mb-4">📦</div>
           <h3 className="text-xl font-bold mb-2">لا توجد طلبات بعد</h3>
           <p className="text-gray-600 mb-6">ابدأ التسوق الآن واستمتع بتجربة فريدة</p>
-          <Link href="/products" className="bg-[#FFC300] text-[#1F3B66] font-bold px-6 py-3 rounded-lg inline-block hover:bg-[#FFD700]">
+          <Link href="/products" className="bg-[#C73E3A] text-white font-bold px-6 py-3 rounded-lg inline-block hover:bg-[#A52A26]">
             تصفح المنتجات
           </Link>
         </div>
@@ -419,7 +419,7 @@ function OrdersTab() {
               </div>
               <div>
                 <p className="text-sm text-gray-500">المجموع</p>
-                <p className="font-bold text-[#FFC300]">{order.totalAmount.toFixed(2)} ر.س</p>
+                <p className="font-bold text-[#C73E3A]">{order.totalAmount.toFixed(2)} ر.س</p>
               </div>
             </div>
 
@@ -446,12 +446,12 @@ function OrdersTab() {
             <div className="flex gap-3 mt-4">
               <Link
                 href={`/orders/${order.id}`}
-                className="flex-1 border-2 border-[#1F3B66] text-[#1F3B66] font-bold py-2 rounded-lg hover:bg-[#1F3B66] hover:text-white transition-colors text-center"
+                className="flex-1 border-2 border-[#2D7A3E] text-[#2D7A3E] font-bold py-2 rounded-lg hover:bg-[#2D7A3E] hover:text-white transition-colors text-center"
               >
                 عرض التفاصيل
               </Link>
               {order.status === 'DELIVERED' && (
-                <button className="flex-1 bg-[#FFC300] text-[#1F3B66] font-bold py-2 rounded-lg hover:bg-[#FFD700] transition-colors">
+                <button className="flex-1 bg-[#C73E3A] text-white font-bold py-2 rounded-lg hover:bg-[#A52A26] transition-colors">
                   تقييم المنتجات
                 </button>
               )}

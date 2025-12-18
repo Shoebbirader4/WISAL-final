@@ -38,19 +38,19 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-[#1F3B66] text-white sticky top-0 z-50 shadow-lg">
+    <header className="bg-gradient-to-r from-[#2D7A3E] to-[#1F5A2E] text-white sticky top-0 z-50 shadow-lg">
       {/* Top Bar */}
       <div className="border-b border-white/10">
         <div className="container mx-auto px-4 py-2 flex justify-between items-center text-sm">
           <div className="flex gap-4">
-            <Link href="/seller" className="hover:text-[#FFC300] transition-colors">{t('become_seller')}</Link>
-            <Link href="/help" className="hover:text-[#FFC300] transition-colors">{t('help')}</Link>
+            <Link href="/seller" className="hover:text-[#C73E3A] transition-colors">{t('become_seller')}</Link>
+            <Link href="/help" className="hover:text-[#C73E3A] transition-colors">{t('help')}</Link>
           </div>
           <div className="flex gap-4 items-center">
             {/* Language Switcher */}
             <button
               onClick={() => setLocale(locale === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-2 hover:text-[#FFC300] transition-colors"
+              className="flex items-center gap-2 hover:text-[#C73E3A] transition-colors"
             >
               <Globe size={16} />
               <span>{locale === 'ar' ? 'English' : 'العربية'}</span>
@@ -59,10 +59,10 @@ export default function Header() {
             {user ? (
               <>
                 <span className="text-white/90">{t('welcome')}, {user.nameAr || user.name}</span>
-                <button onClick={logout} className="hover:text-[#FFC300] transition-colors">{t('logout')}</button>
+                <button onClick={logout} className="hover:text-[#C73E3A] transition-colors">{t('logout')}</button>
               </>
             ) : (
-              <Link href="/login" className="hover:text-[#FFC300] transition-colors">{t('login')}</Link>
+              <Link href="/login" className="hover:text-[#C73E3A] transition-colors">{t('login')}</Link>
             )}
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function Header() {
           <Link href="/" className="flex-shrink-0">
             <h1 className="text-3xl font-bold leading-tight">
               <span className="text-white">{t('brand_name')}</span>
-              <span className="text-[#FFC300] text-sm block">{t('brand_tagline')}</span>
+              <span className="text-[#C73E3A] text-sm block">{t('brand_tagline')}</span>
             </h1>
           </Link>
 
@@ -87,12 +87,12 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t('search_placeholder')}
-                className="w-full px-4 py-3 pr-12 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFC300]"
+                className="w-full px-4 py-3 pr-12 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#C73E3A]"
                 dir={locale === 'ar' ? 'rtl' : 'ltr'}
               />
               <button
                 type="submit"
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#FFC300] text-[#1F3B66] p-2 rounded-md hover:bg-[#FFD700]"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#C73E3A] text-white p-2 rounded-md hover:bg-[#A52A26]"
               >
                 <Search size={20} />
               </button>
@@ -101,27 +101,27 @@ export default function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            <Link href="/reels" className="flex flex-col items-center hover:text-[#FFC300] transition-colors">
+            <Link href="/reels" className="flex flex-col items-center hover:text-[#C73E3A] transition-colors">
               <div className="text-2xl">🎥</div>
               <span className="text-xs font-medium">{t('nav_reels')}</span>
             </Link>
 
-            <Link href="/wishlist" className="flex flex-col items-center hover:text-[#FFC300] transition-colors">
+            <Link href="/wishlist" className="flex flex-col items-center hover:text-[#C73E3A] transition-colors">
               <Heart size={24} />
               <span className="text-xs font-medium">{t('nav_wishlist')}</span>
             </Link>
 
-            <Link href="/cart" className="flex flex-col items-center hover:text-[#FFC300] transition-colors relative">
+            <Link href="/cart" className="flex flex-col items-center hover:text-[#C73E3A] transition-colors relative">
               <ShoppingCart size={24} />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#FFC300] text-[#1F3B66] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-[#C73E3A] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
               <span className="text-xs font-medium">{t('nav_cart')}</span>
             </Link>
 
-            <Link href={user ? "/profile" : "/login"} className="flex flex-col items-center hover:text-[#FFC300] transition-colors">
+            <Link href={user ? "/profile" : "/login"} className="flex flex-col items-center hover:text-[#C73E3A] transition-colors">
               <User size={24} />
               <span className="text-xs font-medium">{t('nav_profile')}</span>
             </Link>
@@ -130,20 +130,20 @@ export default function Header() {
       </div>
 
       {/* Categories Bar */}
-      <div className="bg-[#2a4d7a] border-t border-white/10">
+      <div className="bg-[#1F5A2E] border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-6 py-3 overflow-x-auto">
-            <Link href="/categories" className="flex items-center gap-2 hover:text-[#FFC300] whitespace-nowrap font-medium transition-colors">
+            <Link href="/categories" className="flex items-center gap-2 hover:text-[#C73E3A] whitespace-nowrap font-medium transition-colors">
               <Menu size={20} />
               <span>{t('nav_categories')}</span>
             </Link>
-            <Link href="/products?category=electronics" className="hover:text-[#FFC300] whitespace-nowrap font-medium transition-colors">{t('electronics')}</Link>
-            <Link href="/products?category=fashion" className="hover:text-[#FFC300] whitespace-nowrap font-medium transition-colors">{t('fashion')}</Link>
-            <Link href="/products?category=home" className="hover:text-[#FFC300] whitespace-nowrap font-medium transition-colors">{t('home')}</Link>
-            <Link href="/products?category=beauty" className="hover:text-[#FFC300] whitespace-nowrap font-medium transition-colors">{t('beauty')}</Link>
-            <Link href="/products?category=sports" className="hover:text-[#FFC300] whitespace-nowrap font-medium transition-colors">{t('sports')}</Link>
-            <Link href="/products?category=books" className="hover:text-[#FFC300] whitespace-nowrap font-medium transition-colors">{t('books')}</Link>
-            <Link href="/deals" className="text-[#FFC300] font-bold whitespace-nowrap transition-colors">🔥 {t('nav_deals')}</Link>
+            <Link href="/products?category=electronics" className="hover:text-[#C73E3A] whitespace-nowrap font-medium transition-colors">{t('electronics')}</Link>
+            <Link href="/products?category=fashion" className="hover:text-[#C73E3A] whitespace-nowrap font-medium transition-colors">{t('fashion')}</Link>
+            <Link href="/products?category=home" className="hover:text-[#C73E3A] whitespace-nowrap font-medium transition-colors">{t('home')}</Link>
+            <Link href="/products?category=beauty" className="hover:text-[#C73E3A] whitespace-nowrap font-medium transition-colors">{t('beauty')}</Link>
+            <Link href="/products?category=sports" className="hover:text-[#C73E3A] whitespace-nowrap font-medium transition-colors">{t('sports')}</Link>
+            <Link href="/products?category=books" className="hover:text-[#C73E3A] whitespace-nowrap font-medium transition-colors">{t('books')}</Link>
+            <Link href="/deals" className="text-[#C73E3A] font-bold whitespace-nowrap transition-colors">🔥 {t('nav_deals')}</Link>
           </div>
         </div>
       </div>

@@ -1,17 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1F3B66;
-  --color-accent: #FFC300;
+  --color-primary: #2D7A3E;
+  --color-accent: #C73E3A;
   --color-background: #ffffff;
-  --color-foreground: #111827;
+  --color-foreground: #2C2C2C;
 }
 
 :root {
-  --primary-color: #1F3B66;
-  --accent-color: #FFC300;
+  --primary-color: #2D7A3E;
+  --primary-dark: #1F5A2E;
+  --primary-light: #4CAF50;
+  --accent-color: #C73E3A;
+  --accent-dark: #A52A26;
+  --accent-light: #E57373;
+  --gradient-green: #2D7A3E;
+  --gradient-red: #C73E3A;
+  --text-dark: #2C2C2C;
+  --text-gray: #5A5A5A;
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: #2C2C2C;
 }
 
 /* FORCE HIGH CONTRAST - Fix all faded text */

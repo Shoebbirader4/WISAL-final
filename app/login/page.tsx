@@ -29,10 +29,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1F3B66] to-[#2a4d7a] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-b from-[#2D7A3E] to-[#1F5A2E] flex items-center justify-center px-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-[#1F3B66] mb-2">وصال</h1>
+          <h1 className="text-4xl font-bold text-[#2D7A3E] mb-2">وصال</h1>
           <p className="text-gray-600">تسجيل الدخول</p>
         </div>
 
@@ -77,14 +77,14 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#FFC300] text-[#1F3B66] font-bold py-4 px-6 rounded-lg hover:bg-[#FFD700] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-[#C73E3A] text-white font-bold py-4 px-6 rounded-lg hover:bg-[#A52A26] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
           </button>
         </form>
 
         <div className="mt-6 text-center">
-          <Link href="/" className="text-[#1F3B66] hover:text-[#FFC300] transition-colors">
+          <Link href="/" className="text-[#2D7A3E] hover:text-[#C73E3A] transition-colors">
             ← العودة إلى الصفحة الرئيسية
           </Link>
         </div>
