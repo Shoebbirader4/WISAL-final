@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String?
+  nameAr        String?
+  role          String    @default("BUYER") // BUYER, SELLER, ADMIN
+  phone         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  orders        Order[]
+  cartItems     CartItem[]
+  products      Product[]  @relation("SellerProducts")
+  videoReels    VideoReel[]
+  likes         ReelLike[]
+  comments      ReelComment[]
+}
+
+
+
+model Product {
+  id            String    @id @default(cuid())
+  name          String
+  nameAr        String
+  description   String?
+  descriptionAr String?
+  price         Float
+  currency      String    @default("SAR")
+  stock         Int       @default(0)
+  category      String
+  images        String    // JSON array of image URLs
+  sellerId      String
+  seller        User      @relation("SellerProducts", fields: [sellerId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  videoReels    VideoReel[]
+  orderItems    OrderItem[]
+  cartItems     CartItem[]
+}
+
+model VideoReel {
+  id            String    @id @default(cuid())
+  videoUrl      String
+  thumbnailUrl  String
+  duration      Int       // in seconds
+  views         Int       @default(0)
+  likes         Int       @default(0)
+  productId     String
+  product       Product   @relation(fields: [productId], references: [id])
+  sellerId      String
+  seller        User      @relation(fields: [sellerId], references: [id])
+  uploadDate    DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  
+  // Relations
+  reelLikes     ReelLike[]
+  comments      ReelComment[]
+}
+
+model ReelLike {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  reelId        String
+  reel          VideoReel @relation(fields: [reelId], references: [id])
+  createdAt     DateTime  @default(now())
+  
+  @@unique([userId, reelId])
+}
+
+model ReelComment {
+  id            String    @id @default(cuid())
+  content       String
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  reelId        String
+  reel          VideoReel @relation(fields: [reelId], references: [id])
+  createdAt     DateTime  @default(now())
+}
+
+model CartItem {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  productId     String
+  product       Product   @relation(fields: [productId], references: [id])
+  quantity      Int       @default(1)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@unique([userId, productId])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  orderNumber   String      @unique
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  totalAmount   Float
+  currency      String      @default("SAR")
+  status        String    @default("PENDING") // PENDING, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+  paymentMethod String?
+  paymentStatus String    @default("PENDING") // PENDING, PAID, FAILED, REFUNDED
+  shippingAddress String    // JSON object
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // Relations
+  orderItems    OrderItem[]
+}
+
+
+
+model OrderItem {
+  id            String    @id @default(cuid())
+  orderId       String
+  order         Order     @relation(fields: [orderId], references: [id])
+  productId     String
+  product       Product   @relation(fields: [productId], references: [id])
+  quantity      Int
+  price         Float     // Price at time of order
+  sellerId      String    // For commission tracking
+  createdAt     DateTime  @default(now())
+}

@@ -1,0 +1,23 @@
+{
+  "app_name": "WISAL",
+  "nav": {
+    "home": "Home",
+    "reels": "WISAL Reels",
+    "categories": "Categories",
+    "cart": "Cart",
+    "profile": "Profile"
+  },
+  "reels": {
+    "title": "WISAL Reels",
+    "add_to_cart": "Add to Cart",
+    "like": "Like",
+    "comment": "Comment",
+    "share": "Share",
+    "views": "views",
+    "product_details": "Product Details"
+  },
+  "common": {
+    "sar": "SAR",
+    "loading": "Loading..."
+  }
+}

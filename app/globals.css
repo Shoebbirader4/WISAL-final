@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1F3B66;
+  --color-accent: #FFC300;
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+}
+
+:root {
+  --primary-color: #1F3B66;
+  --accent-color: #FFC300;
+  --background: #ffffff;
+  --foreground: #111827;
+}
+
+/* FORCE HIGH CONTRAST - Fix all faded text */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Override ALL gray text colors for maximum contrast */
+.text-gray-300,
+[class*="text-gray-300"] {
+  color: #d1d5db !important;
+}
+
+.text-gray-400,
+[class*="text-gray-400"] {
+  color: #9ca3af !important;
+}
+
+.text-gray-500,
+[class*="text-gray-500"] {
+  color: #6b7280 !important;
+}
+
+.text-gray-600,
+[class*="text-gray-600"] {
+  color: #374151 !important;
+}
+
+.text-gray-700,
+[class*="text-gray-700"] {
+  color: #1f2937 !important;
+}
+
+.text-gray-800,
+[class*="text-gray-800"] {
+  color: #111827 !important;
+}
+
+.text-gray-900,
+[class*="text-gray-900"] {
+  color: #000000 !important;
+}
+
+/* Force white text to be pure white */
+.text-white,
+[class*="text-white"] {
+  color: #ffffff !important;
+}
+
+/* Ensure all text has minimum contrast */
+p, span, div, a, button, label, input, textarea {
+  color: inherit;
+}
+
+/* Fix white text with opacity */
+.text-white\/90 {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.text-white\/80 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.text-white\/70 {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: inherit;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+}
+
+/* Custom scrollbar for video feed */
+.reels-container::-webkit-scrollbar {
+  display: none;
+}
+
+.reels-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
